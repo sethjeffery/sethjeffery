@@ -1,0 +1,99 @@
+@import "compass/css3/box-shadow";
+@import "compass/css3/transition";
+@import "compass/css3/transform";
+@import "variables";
+
+#cart {
+  position: fixed;
+  top: 10px;
+  right: -120px;
+  width: 116px;
+  background-color: transparentize(mix($yellow, $white, 10%), 0.05);
+  border-radius: 6px;
+  padding-bottom: 65px;
+  @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+  @include transition(right 0.5s);
+  z-index: 10;
+
+  @media (min-width: 720px) {
+    top: 10%;
+  }
+
+  &.in {
+    right: 10px;
+  }
+
+  form {
+    position: absolute;
+    bottom: 3px;
+    left: 3px;
+    right: 3px;
+
+    .btn {
+      display: block;
+      width: 100%;
+    }
+
+    select {
+      width: 100%;
+      margin: 0 0 5px;
+      font-size: 11px;
+    }
+  }
+
+  .title {
+    margin: 10px 0 12px;
+    text-align: center;
+  }
+
+  ul {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      display: block;
+      text-align: center;
+      position: relative;
+      margin-bottom: 15px;
+      @include transition(transform 0.2s);
+      @include transform(scale(0.01));
+
+      &.in {
+        @include transform(scale(1));
+      }
+
+      .count {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 13px;
+        width: 19px;
+        margin-right: 1px;
+        text-align: right;
+      }
+
+      img {
+        position: relative;
+        width: 72px;
+        height: 72px;
+        vertical-align: middle;
+        margin-right: 20px;
+        -webkit-box-reflect: below 0px -webkit-linear-gradient(bottom, rgba(255,255,255,0.2) 0%, transparent 20%, transparent 100%);
+      }
+
+      a.delete {
+        cursor: pointer;
+        position: absolute;
+        top: -9px;
+        right: 11px;
+        background-color: $blue;
+        border-radius: 16px;
+        width: 24px;
+        height: 24px;
+        padding: 6px;
+      }
+    }
+  }
+}

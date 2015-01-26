@@ -1,0 +1,69 @@
+@import "mixins";
+@import "variables";
+
+#top {
+  margin-bottom: 20px;
+
+  .profile {
+    margin-bottom: 20px;
+    padding-left: 120px;
+
+    &::after {
+      @include clearfix();
+    }
+
+    img {
+      margin: 0 20px 0 -120px;
+      float: left;
+    }
+
+    h1 {
+      margin: 0;
+      padding: 18px 0 10px 0;
+    }
+
+    .subtitle {
+      font-family: $titleFont;
+      font-weight: 400;
+      font-size: 20px;
+      color: $grey3;
+
+      a {
+        color: $grey3;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .cover {
+    height: 400px;
+    background: url(../img/cover.jpg) 50% 50% no-repeat;
+    background-size: cover;
+
+    .cover-inner {
+      @include container();
+      content: '';
+      display: block;
+      height: 100%;
+      position: relative;
+
+      @media (min-width: 720px) {
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 100%;
+          width: 2000px;
+          margin-right: -230px;
+          background-color: transparentize($red, 0.25);
+          mix-blend-mode: multiply;
+        }
+      }
+    }
+  }
+}

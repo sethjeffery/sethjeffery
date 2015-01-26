@@ -1,0 +1,169 @@
+@import "variables";
+@import "mixins";
+@import "compass/css3/transition";
+@import "compass/css3/transform";
+
+aside {
+  display: none;
+
+  @media (min-width: 720px) {
+    display: block;
+  }
+
+  > .bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -10;
+
+    &::before {
+      @include container();
+      position: relative;
+      z-index: -8;
+      content: '';
+      display: block;
+      height: 100%;
+      border-left: solid 230px $red;
+      box-sizing: border-box;
+      background-color: $white;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      right: 50%;
+      bottom: 0;
+      z-index: -9;
+      display: block;
+      background-color: $red;
+    }
+  }
+
+  > .container {
+    position: static;
+
+    ul {
+      display: block;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    > ul {
+      margin-left: -250px;
+      font-size: 20px;
+      position: absolute;
+      top: 150px;
+      width: 230px;
+
+      color: white;
+      text-align: right;
+      font-family: $titleFont;
+      font-weight: 400;
+      line-height: 20px;
+      z-index: 10;
+
+      .title {
+        opacity: 0;
+        margin-top: -60px;
+        line-height: 50px;
+        height: 60px;
+        @include transition(margin-top 0.3s, opacity 0.3s);
+
+        img {
+          float: right;
+          width: 50px;
+          height: 50px;
+          margin: 0 10px;
+        }
+
+        .name {
+          opacity: 0;
+          @include transform(translateX(10px));
+          @include transition(opacity 0.3s, transform 0.3s);
+        }
+
+        &:hover {
+          .name {
+            opacity: 1.0;
+            @include transform(translateX(0));
+          }
+        }
+      }
+
+      a {
+        text-decoration: none;
+        cursor: pointer;
+        display: block;
+        padding: 8px 40px 8px 0;
+        position: relative;
+        color: white;
+        @include transition(color 0.2s, padding 0.2s);
+
+        &:focus {
+          outline: none;
+        }
+
+        &::before {
+          @extend .sprites-star;
+          content: '';
+          position: absolute;
+          right: 15px;
+          top: 50%;
+          margin-top: -8px;
+          @include transition(transform 0.2s);
+          @include transform(scale(0.75));
+        }
+
+        &:hover:not(.active) {
+          padding-right: 43px;
+        }
+
+        &:hover, &.active {
+          &::before {
+            @include transform(scale(1));
+          }
+        }
+      }
+
+      li {
+        display: block;
+        list-style: none;
+
+        ul {
+          font-size: 15px;
+
+          a {
+            color: $pink;
+            &::before {
+              @include transform(scale(0.5));
+            }
+
+            &:hover, &.active {
+              color: $white;
+
+              &::before {
+                @include transform(scale(1));
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+  &.affix > .container > ul {
+    position: fixed;
+    top: 10px;
+
+    .title {
+      opacity: 1;
+      margin-top: 0;
+    }
+  }
+}

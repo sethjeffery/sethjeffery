@@ -1,0 +1,54 @@
+@import "variables";
+@import "mixins";
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+img, [class*=sprites] {
+  vertical-align: top;
+  display: inline-block;
+}
+
+.container {
+  @include container();
+  position: relative;
+  padding: 0 10px;
+
+  @media (min-width: 720px) {
+    padding: 0 20px 0 250px;
+  }
+}
+
+.main-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  min-height: 900px;
+  position: relative;
+
+  @media (min-width: 720px) {
+    &::before {
+      content: '';
+      display: block;
+      @include container();
+      // border-left: 230px solid $red;
+      // position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 50%;
+      z-index: -10;
+    }
+  }
+
+  article {
+    section:not(#top) + section {
+      margin-top: 50px;
+    }
+  }
+}
