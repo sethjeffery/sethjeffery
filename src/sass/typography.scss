@@ -7,9 +7,8 @@ body {
   font: 16px/30px $bodyFont;
   font-weight: 300;
   font-kerning: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-smoothing: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-smoothing: subpixel-antialiased;
   text-rendering: optimizeLegibility;
   font-smooth: always;
   color: $grey1;
@@ -17,7 +16,7 @@ body {
 
 h1 {
   font-family: $titleFont;
-  font-weight: 300;
+  font-weight: 100;
   font-size: 45px;
   color: $red;
 }
@@ -45,7 +44,7 @@ h2 {
   }
 
   .title {
-    font-weight: 300;
+    font-weight: 100;
     text-transform: uppercase;
     color: $red;
     margin: 0;
@@ -84,7 +83,7 @@ h3 {
   font-family: $titleFont;
   font-size: 26px;
   color: white;
-  font-weight: 300;
+  font-weight: 100;
   margin: 50px 0 30px 0;
   line-height: 40px;
   position: relative;
@@ -96,7 +95,7 @@ h3 {
 
   .title {
     font-size: 36px;
-    font-weight: 400;
+    font-weight: 300;
   }
 
   .title, .subtitle {
