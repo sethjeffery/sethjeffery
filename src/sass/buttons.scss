@@ -42,6 +42,12 @@
     &:active { background-color: mix($itunes, $black, 90%); }
   }
 
+  &.spotify {
+    background-color: $spotify;
+    &:hover { background-color: mix($spotify, $white, 90%); }
+    &:active { background-color: mix($spotify, $black, 90%); }
+  }
+
   &.cd {
     background-color: $blue;
     &:hover { background-color: mix($blue, $white, 90%); }

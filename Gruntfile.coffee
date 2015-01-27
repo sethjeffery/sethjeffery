@@ -62,7 +62,7 @@ module.exports = (grunt) ->
         tasks: ['compass']
       sprites:
         files: 'src/sprites/**/*.png'
-        tasks: ['spritesheet', 'compass']
+        tasks: ['spritesheet', 'compass', 'copy']
 
     spritesheet:
       build:
