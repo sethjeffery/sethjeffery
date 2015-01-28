@@ -32,10 +32,6 @@
     background-color: mix($yellow, $black, 90%);
   }
 
-  & + .btn {
-    margin-left: 5px;
-  }
-
   &.itunes {
     background-color: $itunes;
     &:hover { background-color: mix($itunes, $white, 90%); }

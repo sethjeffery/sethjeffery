@@ -6,11 +6,10 @@ class @Albums
     @animateTables()
 
   checkBoxReflect: ->
-    unless Modernizr.testProp('webkitBoxReflect')
-      $('.album-art').each ->
-        $el = $(@)
-        $shim = $('<div class="reflect-shim"></div>').appendTo($el)
-        $shim.append $el.find('img').clone().addClass('reflection')
+    $('.album-art').each ->
+      $el = $(@)
+      $shim = $('<div class="reflect-shim"></div>').appendTo($el)
+      $shim.append $el.find('img').clone().addClass('reflection')
 
   animateTables: =>
     $('.table:not("in")').each ->

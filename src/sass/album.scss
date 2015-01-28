@@ -8,8 +8,8 @@
 
   .album-art {
     float: right;
-    margin: -160px -15px 0 0;
-    transform: scale(0.8);
+    margin: -160px 0 0 0;
+    @include transform(scale(0.8) translateX(15px));
     width: 147px;
     padding-left: 3px;
     position: relative;
@@ -24,7 +24,7 @@
       height: 144px;
       background: url('../img/spine.png') 0 0 no-repeat;
       background-size: 3px 144px;
-      -webkit-box-reflect: below -8px -webkit-linear-gradient(bottom, rgba(255,255,255,0.25) 0%, transparent 40%, transparent 100%);
+      // -webkit-box-reflect: below -8px -webkit-linear-gradient(bottom, rgba(255,255,255,0.25) 0%, transparent 40%, transparent 100%);
     }
 
     img {
@@ -32,7 +32,7 @@
       z-index: 5;
       width: 144px;
       height: 144px;
-      -webkit-box-reflect: below 0px -webkit-linear-gradient(bottom, rgba(255,255,255,0.25) 0%, transparent 40%, transparent 100%);
+      // -webkit-box-reflect: below 0px -webkit-linear-gradient(bottom, rgba(255,255,255,0.25) 0%, transparent 40%, transparent 100%);
     }
 
     .reflect-shim {
@@ -64,7 +64,7 @@
         left: 0;
         width: 147px;
         height: 152px;
-        background: linear-gradient(top, rgba(255,255,255,0.75) 0%, rgba(255,255,255,1.0) 40%, rgba(255,255,255,1.0) 100%);
+        @include background-image(linear-gradient(top, rgba(255,255,255,0.75) 0%, rgba(255,255,255,1.0) 40%, rgba(255,255,255,1.0) 100%));
         z-index: -1;
       }
     }
@@ -118,9 +118,25 @@
 
     .album-art {
       @include transform(scale(1));
+      position: static;
       float: left;
       margin: 0 -147px 0 -170px;
       display: block;
+    }
+  }
+
+  .buttons {
+    .btn {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    @media (min-width: 720px) {
+      .btn {
+        display: inline-block;
+        margin-bottom: 0px;
+        & + .btn { margin-left: 5px };
+      }
     }
   }
 
