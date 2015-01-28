@@ -1,27 +1,25 @@
-do startup = ->
-  if (window.$)
-    $ ->
-      @menu = new Menu
-      @menu.initialize()
+$ ->
+  @menu = new Menu
+  @menu.initialize()
 
-      @albums = new Albums()
-      @albums.initialize()
+  @albums = new Albums()
+  @albums.initialize()
 
-      @cart = new Cart()
-      @cart.initialize()
+  @cart = new Cart()
+  @cart.initialize()
 
-      $(".photos a").fancybox
-        openEffect: 'elastic'
-        closeEffect: 'elastic'
-        helpers:
-          overlay:
-            locked: false
-          title:
-            type: 'inside'
-          buttons	: {}
-          thumbs:
-            width: 80
-            height: 50
+  @top = new Top()
+  @top.initialize()
 
-  else
-    setTimeout startup, 10
+  $(".photos a").fancybox
+    openEffect: 'elastic'
+    closeEffect: 'elastic'
+    helpers:
+      overlay:
+        locked: false
+      title:
+        type: 'inside'
+      buttons	: {}
+      thumbs:
+        width: 80
+        height: 50
