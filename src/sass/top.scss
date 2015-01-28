@@ -2,6 +2,7 @@
 @import "variables";
 @import "compass/css3/transform";
 @import "compass/css3/transition";
+@import "compass/css3/box-shadow";
 
 #top {
   margin-bottom: 20px;
@@ -114,10 +115,12 @@
         position: relative;
         cursor: pointer;
         color: white;
+        @include box-shadow(inset 0 0 5px rgba(0,0,0,0.25));
+        border-radius: 4px;
 
         opacity: 0;
         @include transform(scale(0.01));
-        @include transition(transform 0.2s, opacity 0.2s);
+        @include transition(transform 0.2s, opacity 0.2s, background-color 0.15s);
 
         span {
           position: absolute;
@@ -153,10 +156,26 @@
         }
       }
 
-      a.email { background-color: #e0b300; }
-      a.phone { background-color: #36b713; }
-      a.linkedin { background-color: $linkedInBlue; }
-      a.github { background-color: $grey5; color: $grey1; }
+      a.email {
+        background-color: #e0b300;
+        &:hover { background-color: mix(#e0b300, $white, 80%); }
+        &:active { background-color: mix(#e0b300, $black, 90%); }
+      }
+      a.phone {
+        background-color: #36b713;
+        &:hover { background-color: mix(#36b713, $white, 80%); }
+        &:active { background-color: mix(#36b713, $black, 90%); }
+      }
+      a.linkedin {
+        background-color: $linkedInBlue;
+        &:hover { background-color: mix($linkedInBlue, $white, 80%); }
+        &:active { background-color: mix($linkedInBlue, $black, 90%); }
+      }
+      a.github {
+        background-color: $grey5; color: $grey1;
+        &:hover { background-color: mix($grey5, $white, 80%); }
+        &:active { background-color: mix($grey5, $black, 90%); }
+      }
     }
   }
 }
