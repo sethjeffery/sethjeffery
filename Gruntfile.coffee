@@ -33,11 +33,6 @@ module.exports = (grunt) ->
           src: ['js/**/*.js', 'favicon.png', 'apple-touch-icon.png', '.htaccess', 'img/**/*']
           dest: 'build/'
           filter: 'isFile'
-        ,
-          expand: true
-          cwd: 'tmp/'
-          src: ['img/sprites.png', 'img/sprites@2x.png']
-          dest: 'build/'
         ]
 
     watch:
@@ -59,10 +54,12 @@ module.exports = (grunt) ->
         tasks: ['copy']
       compass:
         files: 'src/sass/**/*.scss'
-        tasks: ['compass']
-      sprites:
-        files: 'src/sprites/**/*.png'
-        tasks: ['spritesheet', 'compass', 'copy']
+        tasks: ['compass', 'autoprefixer']
+
+    autoprefixer:
+      dist:
+        files:
+          'build/css/main.css': 'build/css/main.css'
 
     bgShell:
       startServer:
@@ -88,11 +85,11 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-haml'
   grunt.loadNpmTasks 'grunt-contrib-watch'
-  grunt.loadNpmTasks 'grunt-spritesheet'
   grunt.loadNpmTasks 'grunt-bg-shell'
-  # grunt.loadNpmTasks 'grunt-contrib-imagemin'
+  grunt.loadNpmTasks 'grunt-contrib-imagemin'
+  grunt.loadNpmTasks 'grunt-autoprefixer'
 
   # Tasks
-  grunt.registerTask 'build', ['clean', 'coffee', 'compass', 'haml', 'copy']#, 'imagemin']
+  grunt.registerTask 'build', ['clean', 'coffee', 'compass', 'autoprefixer', 'haml', 'copy']
   grunt.registerTask 'default', ['build', 'bgShell:startServer', 'watch']
-  grunt.registerTask 'deploy', ['build']#, 'imagemin']
+  grunt.registerTask 'deploy', ['build', 'imagemin']
