@@ -64,15 +64,6 @@ module.exports = (grunt) ->
         files: 'src/sprites/**/*.png'
         tasks: ['spritesheet', 'compass', 'copy']
 
-    spritesheet:
-      build:
-        sprites:
-          "tmp/img/sprites.png": ['src/sprites/**/*.png']
-        sheet: "tmp/sass/sprites.scss"
-        spritesmithOptions:
-          padding: 5
-          algorithm: "binary-tree"
-
     bgShell:
       startServer:
         cmd: "bundle exec unicorn"
@@ -99,9 +90,9 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-spritesheet'
   grunt.loadNpmTasks 'grunt-bg-shell'
-  grunt.loadNpmTasks 'grunt-contrib-imagemin'
+  # grunt.loadNpmTasks 'grunt-contrib-imagemin'
 
   # Tasks
-  grunt.registerTask 'build', ['clean', 'spritesheet', 'coffee', 'compass', 'haml', 'copy', 'imagemin']
+  grunt.registerTask 'build', ['clean', 'coffee', 'compass', 'haml', 'copy']#, 'imagemin']
   grunt.registerTask 'default', ['build', 'bgShell:startServer', 'watch']
-  grunt.registerTask 'deploy', ['build', 'imagemin']
+  grunt.registerTask 'deploy', ['build']#, 'imagemin']

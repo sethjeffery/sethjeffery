@@ -1,0 +1,110 @@
+#side-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  @media (min-width: 768px) {
+    background: url(../img/seth-guitar.jpg) center;
+    background-size: cover;
+    width: 30%;
+  }
+
+  @media (min-width: 1000px) {
+    width: 25%;
+  }
+}
+
+body {
+  background: url(../img/popart.png) right no-repeat;
+  background-size: auto 100%;
+
+  font-family: "Open Sans", Calibri, Helvetica, Arial, sans-serif;
+  @media (min-width: 768px) {
+    padding: 0 0 0 30%;
+  }
+  @media (min-width: 1000px) {
+    padding: 0 10% 0 25%;
+  }
+  @media (min-width: 1200px) {
+    padding: 0 15% 0 25%;
+  }
+}
+
+h1 {
+  font-family: $condensedFont;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  font-size: 52px;
+  margin: .5em 0;
+
+  @media (min-width: 480px) {
+    font-size: 70px;
+  }
+
+  @media (min-width: 600px) {
+    font-size: 100px;
+    white-space: nowrap;
+
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      background-color: #913b3e;
+      height: 10px;
+      left: 50%;
+      top: 116px;
+    }
+
+    &::before {
+      margin-left: -246px;
+      width: 176px;
+    }
+
+    &::after {
+      margin-left: -8px;
+      width: 242px;
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  background-color: #aaa;
+  color: rgba(255,255,255,0.75);
+  font-size: 12px;
+  line-height: 18px;
+  margin-top: 30px;
+  padding: 20px;
+
+  .copyright {
+    margin-bottom: 5px;
+  }
+
+  .disclaimer {
+    opacity: 0.5;
+  }
+
+  @media (min-width: 768px) {
+    background-color: transparent;
+    color: rgba(0,0,0,1);
+    text-shadow: 0 0 2px white, 0 0 4px white, 0 0 8px white;
+  }
+
+  @media (min-width: 1000px) {
+    color: rgba(0,0,0,0.5);
+  }
+}
+
+#page {
+  display: block;
+  height: calc(100vh - 112px);
+  padding-top: 1px;
+
+  @media (min-width: 768px) {
+    height: inherit;
+  }
+}

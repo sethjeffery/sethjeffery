@@ -6,11 +6,11 @@
     %title Seth Jeffery
 
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
-    %meta{name: 'description', content: "Listen to Seth's music or read more about his albums, work and web/mobile development."}
+    %meta{name: 'description', content: "Who is Seth Jeffery? Find out."}
     %meta{property: "og:image", content: "http://www.sethjeffery.com/img/cover.jpg"}
 
     %link{rel: 'stylesheet', href: 'css/main.css'}
-    %link{href: 'http://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100,300,400|Roboto:400,300,700', rel: 'stylesheet', type: 'text/css'}
+    %link{href: 'http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Open+Sans:400', rel: 'stylesheet', type: 'text/css'}
     %link{rel: "icon", href: "favicon.png", type:"image/png"}
     %link{rel: "apple-touch-icon", href: "apple-touch-icon.png", type:"image/png"}
 
@@ -21,25 +21,7 @@
       %p.browsehappy
         You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
 
-    .main-container
-
-      %article
-        %section#top
-          +include 'src/partials/top.haml'
-
-        %section#life
-          +include 'src/partials/life.haml'
-
-        %section#music
-          +include 'src/partials/music.haml'
-
-        %section#development
-          +include 'src/partials/development.haml'
-
-      %aside
-        +include 'src/partials/side.haml'
+    +include 'src/partials/main.haml'
 
     %script{src: 'js/vendor/jquery-1.11.1.min.js'}
-    %script{src: 'js/vendor/jquery.fancybox.js'}
-    %script{src: 'js/vendor/jquery.fancybox-thumbs.js'}
     %script{src: 'js/main.js'}
