@@ -7,12 +7,12 @@ jobs:
       only:
         – master
     steps:
-      – run:
+      - run:
           name: Install LFTP
           command: |
             sudo apt-get update;
             sudo apt-get install lftp;
-      – checkout
-      – run:
+      - checkout
+      - run:
           name: Send Via SFTP
           command: lftp sftp://${username}:${password}@${hostname} -e "mirror -v -R –exclude .git/ –exclude .circleci/ ./ ${site_name}/wp-content/themes/${theme}; quit"
