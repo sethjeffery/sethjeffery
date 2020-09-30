@@ -2,17 +2,27 @@ version: 2.0
 jobs:
   build:
     machine:
-      image: circleci/classic:latest
+      image: circleci/node
     branches:
       only:
         – master
     steps:
-      - run:
-          name: Install LFTP
-          command: |
-            sudo apt-get update;
-            sudo apt-get install lftp;
       - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
-          name: Send Via SFTP
-          command: lftp sftp://${username}:${password}@${host} -e "mirror -v -R –exclude .git/ –exclude .circleci/ ./ ${remote_path}; quit"
+          name: Install Dependencies
+          command: yarn install --immutable
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Run Tests
+          command: yarn test
+      - run:
+          name: Send Via SCP
+          command: scp -rp build/ $SSH_USER@$SSH_HOST:$SSH_PATH
