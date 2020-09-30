@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { faSpotify, faSoundcloud, faYoutube, faFacebook } from '@fortawesome/fontawesome-free-brands'
+import YoutubeVideo from '../YoutubeVideo';
+import FacebookVideo from '../FacebookVideo';
+import Video from '../Video';
 import IconLink from '../IconLink';
-import rot13 from '../rot13';
+import microphone from '../images/microphone.jpg';
 import Page from './Page';
 
 function Music(props) {
@@ -16,13 +19,15 @@ function Music(props) {
         <IconLink icon={faSoundcloud} href="https://soundcloud.com/seth-jeffery">Soundcloud</IconLink>, or
         <IconLink icon={faYoutube} href="https://www.youtube.com/user/cybersethxp/videos">Youtube</IconLink>.
       </p>
-      <iframe src="https://www.youtube.com/embed/eEFcxQtSUyw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;" allowfullscreen/>
+      <YoutubeVideo id="eEFcxQtSUyw"/>
+      <YoutubeVideo id="yv9Y9itSA_A"/>
+
       <h2>Live Evenings</h2>
       <p>
         As a couple, we often do live worship sessions from our living room.<br/>
         Join us in person, or on <IconLink icon={faFacebook} href="https://www.facebook.com/sethjefferymusic">Facebook Live</IconLink>.
       </p>
-      <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fsethjeffery%2Fvideos%2F10164204504285578%2F&show_text=0&width=560" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"/>
+      <FacebookVideo id='10164204504285578'/>
     </Page>
   )
 }
@@ -32,15 +37,30 @@ export default styled(Music)`
     margin-top: .5em;
   }
 
-  iframe {
+  h2 {
+    margin-top: 3rem;
+  }
+
+  ${Video} {
     width: 100%;
     max-width: min(600px, 80vw);
     height: 200px;
   }
 
   @media (min-width: 600px) {
-    iframe {
+    ${Video} {
       height: 300px;
+    }
+  }
+
+  @media (min-width: 900px) {
+    background-image: url(${microphone});
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: min(25vw, 40vh);
+
+    ${Video} {
+      max-width: min(600px, 50vw);
     }
   }
 `;

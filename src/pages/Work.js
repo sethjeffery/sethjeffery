@@ -23,7 +23,7 @@ function Work(props) {
         <li>React</li>
         <li>SCSS</li>
         <li>NodeJS</li>
-        <li>ES2016</li>
+        <li>ES2018</li>
         <li>AWS</li>
         <li>DynamoDB</li>
         <li>Postgres</li>
