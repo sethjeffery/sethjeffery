@@ -1,0 +1,31 @@
+version: 2.0
+jobs:
+  build:
+    machine:
+      image: circleci/node
+    branches:
+      only:
+        – master
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --immutable
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Run Tests
+          command: yarn test
+      - run:
+          name: Build Site
+          command: yarn build
+      - run:
+          name: Send Via SCP
+          command: scp -rp build/ $SSH_USER@$SSH_HOST:$SSH_PATH
