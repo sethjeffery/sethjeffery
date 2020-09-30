@@ -15,7 +15,8 @@ GEM
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
     ffi (1.9.6)
-    haml (4.0.6)
+    haml (5.0.0)
+      temple (>= 0.8.0)
       tilt
     kgio (2.9.3)
     multi_json (1.10.1)
@@ -25,7 +26,8 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     sass (3.4.10)
-    tilt (2.0.1)
+    temple (0.8.2)
+    tilt (2.0.10)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
