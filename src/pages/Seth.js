@@ -16,7 +16,7 @@ function Seth(props) {
     <Page {...props}>
       <h1>Hello, I'm Seth.</h1>
       <p>
-        I'm currently living in <IconLink icon={faCity} href="https://www.google.com/maps/place/Caen">Caen, France</IconLink>.
+        I'm an Englishman currently in <IconLink icon={faCity} href="https://www.google.com/maps/place/Caen">Caen, France</IconLink>.
       </p>
       <p>
         I write a lot of <IconLink icon={faSpotify} to="/music">music</IconLink>,
