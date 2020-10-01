@@ -1,11 +1,7 @@
 import styled from 'styled-components/macro';
 import '../fonts.css';
 import { mobileBreakpoint } from '../breakpoints';
-import { matchPath, withRouter } from 'react-router-dom';
-
-function active({ path, location: { pathname }}) {
-  return matchPath(pathname, { path, exact: true })
-}
+import { withRouter } from 'react-router-dom';
 
 export default withRouter(styled.article`
   background-size: min(60vw, 75vh);

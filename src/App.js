@@ -3,7 +3,6 @@ import styled from 'styled-components/macro';
 import Side from './Side';
 import Seth from './pages/Seth';
 import Events from './pages/Events';
-import Page from './pages/Page';
 import Ana from './pages/Ana';
 import Music from './pages/Music';
 import Work from './pages/Work';

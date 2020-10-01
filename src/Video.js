@@ -5,11 +5,12 @@ function isMobileUserAgent() {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
-function Video({ className, src, imgSrc, href, started, handleClick, children }) {
+function Video({ className, src, imgSrc, href, started, handleClick, children, title }) {
   if(started || !imgSrc) {
     return (
       <div className={className}>
         {children || <iframe src={`${src}`}
+                             title={title || 'Video'}
                              scrolling="no"
                              frameBorder="0"
                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
@@ -19,7 +20,7 @@ function Video({ className, src, imgSrc, href, started, handleClick, children })
   } else {
     return (
       <a href={href} onClick={handleClick} className={className}>
-        <img src={imgSrc}/>
+        <img src={imgSrc} alt={title}/>
       </a>
     );
   }

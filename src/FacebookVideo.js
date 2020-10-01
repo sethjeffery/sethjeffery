@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import styled from 'styled-components/macro';
 import Video from './Video';
 import FacebookPlayer from 'react-facebook-player';
 
-function FacebookVideo({ id, page = 'sethjeffery', className }) {
+function FacebookVideo({ id, title, className }) {
   const [started, setStarted] = useState(false);
 
   return (
-    <Video className={className} autostart={started}>
+    <Video title={title} className={className} autostart={started}>
       <FacebookPlayer
         appId='131059153661565'
         videoId={String(id)}

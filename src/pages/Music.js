@@ -19,15 +19,15 @@ function Music(props) {
         <IconLink icon={faSoundcloud} href="https://soundcloud.com/seth-jeffery">Soundcloud</IconLink>, or
         <IconLink icon={faYoutube} href="https://www.youtube.com/user/cybersethxp/videos">Youtube</IconLink>.
       </p>
-      <YoutubeVideo id="eEFcxQtSUyw"/>
-      <YoutubeVideo id="yv9Y9itSA_A"/>
+      <YoutubeVideo id="eEFcxQtSUyw" title="Song of Repentance"/>
+      <YoutubeVideo id="yv9Y9itSA_A" title="When I Survey"/>
 
       <h2>Live Evenings</h2>
       <p>
         As a couple, we often do live worship sessions from our living room.<br/>
         Join us in person, or on <IconLink icon={faFacebook} href="https://www.facebook.com/sethjefferymusic">Facebook Live</IconLink>.
       </p>
-      <FacebookVideo id='10164204504285578'/>
+      <FacebookVideo id='10164204504285578' title="Living Room Live Worship"/>
     </Page>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { faMale, faFemale, faCalendarAlt, faMusic } from '@fortawesome/free-solid-svg-icons'
+import { faMale, faFemale, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { faSpotify, faGithub } from '@fortawesome/fontawesome-free-brands'
 import SideLink from './SideLink';
 import { mobileBreakpoint } from './breakpoints';

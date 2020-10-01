@@ -13,7 +13,7 @@ function IconLink({ icon, iconColor, children, to, ...props }) {
     );
   } else {
     return (
-      <a target="_blank" {...props}>
+      <a target="_blank" rel="noopener noreferrer" {...props}>
         <FontAwesomeIcon icon={icon} style={ iconColor && { color: iconColor }}/>
         <span>{children}</span>
       </a>

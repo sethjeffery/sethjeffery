@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { faCity, faFemale, faCalendarAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { faFacebook, faGithub, faLinkedin } from '@fortawesome/fontawesome-free-brands'
+import { faGithub, faLinkedin } from '@fortawesome/fontawesome-free-brands'
 import IconLink from '../IconLink';
 import Page from './Page';
 
@@ -12,7 +11,7 @@ function Work(props) {
       <p>
         You can see some of my work on <IconLink icon={faGithub} href="https://www.github.com/sethjeffery">Github</IconLink
         > or <IconLink icon={faLinkedin} href="https://www.linkedin.com/in/sethjeffery/">LinkedIn</IconLink>, including
-        the source of <a href="https://github.com/sethjeffery/sethjeffery" target="_blank">this website</a>.
+        the source of <a href="https://github.com/sethjeffery/sethjeffery" target="_blank" rel="noopener noreferrer">this website</a>.
       </p>
 
       <h3>

@@ -28,7 +28,7 @@ function Date({ startDate, className, href }) {
   const formattedDate = startDate.format('Do MMMM YYYY');
 
   return (
-    <a target="_blank" className={className} href={href}>
+    <a target="_blank" className={className} href={href} rel="noopener noreferrer">
       <FontAwesomeIcon icon={faCalendar}/>
       <DayOfWeek>{dayOfWeek}</DayOfWeek>
       {formattedDate}
