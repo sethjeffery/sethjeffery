@@ -5,21 +5,22 @@ jobs:
       image: circleci/node
     steps:
       - checkout
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
           command: yarn install --immutable
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
+  test:
+    machine:
+      image: circleci/node
+    steps:
+      - checkout
       - run:
           name: Run Tests
           command: yarn test
+  deploy:
+    machine:
+      image: circleci/node
+    steps:
+      - checkout
       - run:
           name: Build Site
           command: yarn build
@@ -30,7 +31,9 @@ workflows:
   version: 2
   workflow:
     jobs:
-      - build:
+      - build
+      - deploy:
+          requires: build
           filters:
             branches:
-              only: – master
+              only: - master
