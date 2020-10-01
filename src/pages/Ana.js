@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { faMale, faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { faFacebook } from '@fortawesome/fontawesome-free-brands'
+import { faFacebook, faYoutube } from '@fortawesome/fontawesome-free-brands'
 import IconLink from '../IconLink';
 import rot13 from '../rot13';
 import Page from './Page';
@@ -20,7 +20,8 @@ function Ana(props) {
         We now have 2 daughters—Faith and Harmony—and a son, Isaac!
       </p>
       <p>
-        I move in prophecy and intercession. It is from many dreams and words from the Holy Spirit
+        I move in <IconLink icon={faYoutube} href="https://www.youtube.com/channel/UCbGFJzSVUpAtPP1zt1NH-GQ">prophecy</IconLink> and
+        intercession. It is from many dreams and words from the Holy Spirit
         that we moved first to Portugal and then to France as missionaries.
       </p>
       <p>
