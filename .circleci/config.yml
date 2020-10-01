@@ -1,7 +1,7 @@
 version: 2.0
 jobs:
   install:
-    machine:
+    docker:
       image: circleci/node
     steps:
       - checkout
@@ -23,7 +23,7 @@ jobs:
             - .
 
   test:
-    machine:
+    docker:
       image: circleci/node
     steps:
       - attach_workspace:
@@ -33,7 +33,7 @@ jobs:
           command: yarn test
 
   deploy:
-    machine:
+    docker:
       image: circleci/node
     steps:
       - attach_workspace:
