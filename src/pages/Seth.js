@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import sethGuitar from '../images/seth-guitar-bw.jpg';
+import sethGuitar from '../images/seth-guitar.jpg';
 import { faCity, faFemale, faCalendarAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faSpotify, faGithub, faFacebook } from '@fortawesome/fontawesome-free-brands'
 import IconLink from '../IconLink';
