@@ -11,7 +11,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "ical.js": "^1.4.0",
-    "moment": "^2.29.0",
+    "moment": "^2.29.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-facebook-player": "^0.1.0",
