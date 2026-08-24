@@ -73,7 +73,7 @@
 .toolbar > button {
   padding: 0 clamp(20px, 3vw, 42px);
   border: 0;
-  color: var(--paper);
+  color: rgba(251, 248, 240, 0.55);
   background: transparent;
   cursor: pointer;
   font-size: 12px;
@@ -84,7 +84,7 @@
 
 .toolbar > button:hover,
 .toolbar > button:focus-visible {
-  color: #13261c;
+  color: white;
   outline: 0;
   background: var(--orange);
 }
