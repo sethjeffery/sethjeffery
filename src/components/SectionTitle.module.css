@@ -1,0 +1,13 @@
+.title h2 {
+  margin: 0;
+  font-size: clamp(54px, 6.2vw, 98px);
+  line-height: 0.92;
+}
+
+.title > p:not(:first-child) {
+  max-width: 380px;
+  margin-top: 28px;
+  color: var(--moss);
+  line-height: 1.65;
+  font-size: 18px;
+}

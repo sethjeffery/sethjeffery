@@ -1,0 +1,49 @@
+.movement {
+  display: grid;
+  position: relative;
+  grid-template-rows: min-content 1fr min-content;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  transition: 0.3s;
+  aspect-ratio: 1 / 1;
+  box-shadow: 8px 8px 0 var(--line);
+}
+
+.movement:hover {
+  padding: 22px 18px;
+  color: white;
+  background: var(--orange);
+}
+
+.movement small {
+  align-self: start;
+  padding-top: 5px;
+  color: var(--moss);
+  font-weight: 800;
+}
+
+.movement h3 {
+  margin-bottom: 8px;
+  margin-right: 20%;
+  font-family: var(--display);
+  font-weight: normal;
+  font-size: clamp(18px, 1.8vw, 28px);
+}
+
+.movement:hover p,
+.movement:hover small {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.icon {
+  height: 4rem;
+  width: 4rem;
+  align-self: center;
+}
+
+@media (max-width: 1100px) {
+  .movement {
+    aspect-ratio: auto;
+  }
+}

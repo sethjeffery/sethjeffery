@@ -1,0 +1,8 @@
+.site {
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--cream);
+  transition:
+    background 0.5s,
+    color 0.5s;
+}

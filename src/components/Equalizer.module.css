@@ -1,0 +1,34 @@
+.equalizer {
+  position: absolute;
+  z-index: 2;
+  right: 5vw;
+  bottom: 11%;
+  height: 22%;
+  display: flex;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+.equalizer i {
+  width: clamp(3px, 0.35vw, 6px);
+  height: var(--bar-height);
+  background: linear-gradient(#ffd475, #ff5449);
+  transform-origin: bottom;
+}
+
+.playing i {
+  animation: equalize var(--bar-speed) ease-in-out infinite alternate;
+}
+
+@keyframes equalize {
+  to {
+    transform: scaleY(0.25);
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 640px) {
+  .equalizer {
+    display: none;
+  }
+}

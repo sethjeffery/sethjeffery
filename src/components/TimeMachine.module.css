@@ -1,0 +1,1190 @@
+.timeMachine {
+  /* Motion */
+  --era-ease: cubic-bezier(0.22, 0.8, 0.22, 1);
+  --era-duration: 680ms;
+  --era-duration-fast: 520ms;
+  --era-duration-input: 180ms;
+
+  /* Stage */
+  --era-ink: #19231e;
+  --era-paper: #f4ebe2;
+  --era-accent: #f06446;
+  --stage-border: 1px solid rgba(0, 0, 0, 0.14);
+  --stage-radius: 22px;
+  --stage-shadow: inset 0 0 55px rgba(0, 0, 0, 0.035);
+
+  /* Window chrome */
+  --chrome-height: 0px;
+  --chrome-opacity: 0;
+  --chrome-color: inherit;
+  --chrome-bg: rgba(255, 255, 255, 0.58);
+  --chrome-border: 1px solid rgba(0, 0, 0, 0.14);
+
+  /* App surface */
+  --surface-inset: 22px;
+  --surface-radius: 20px;
+  --surface-border-width: 1px;
+  --surface-border-style: solid;
+  --surface-border-color: rgba(255, 255, 255, 0.65);
+  --surface-bg: rgba(255, 250, 241, 0.8);
+  --surface-shadow: 0 25px 55px rgba(113, 58, 37, 0.12);
+  --surface-scale: 1;
+  --app-opacity: 1;
+  --terminal-opacity: 0;
+
+  /* App rows */
+  --nav-height: 56px;
+  --status-height: 0px;
+  --status-opacity: 0;
+  --cards-height: 62px;
+  --cards-opacity: 1;
+
+  /* Navigation */
+  --brand-opacity: 0;
+  --brand-width: 0px;
+  --brand-color: white;
+  --brand-bg: var(--era-accent);
+  --brand-shadow: none;
+  --live-opacity: 1;
+  --live-width: 46px;
+  --nav-justify: flex-start;
+  --nav-padding: 0 16px;
+  --nav-color: inherit;
+  --nav-bg: transparent;
+  --nav-border: 1px solid rgba(0, 0, 0, 0.08);
+
+  /* App body */
+  --body-columns: 112px minmax(0, 1fr);
+  --body-padding: 24px 30px;
+
+  /* Clock */
+  --clock-size: 94px;
+  --clock-radius: 50%;
+  --clock-border: 3px solid var(--era-accent);
+  --clock-outline: none;
+  --clock-bg: color-mix(in srgb, var(--era-accent) 8%, white);
+  --clock-image: none;
+  --clock-shadow: none;
+  --clock-transform: none;
+  --clock-detail-opacity: 1;
+  --clock-detail-color: var(--era-ink);
+  --clock-hour-angle: 0deg;
+  --clock-minute-angle: 0deg;
+  --clock-second-angle: 0deg;
+  --second-hand-color: #df342c;
+  --second-hand-length: 42%;
+  --second-line-width: 2px;
+  --second-dot-size: 0px;
+  --second-dot-shadow: none;
+  --clock-face-inset: 2px;
+  --clock-face-border: 1px solid var(--era-ink);
+  --clock-face-radius: 999px;
+  --clock-face-bg: transparent;
+
+  /* Action */
+  --button-width: 136px;
+  --button-gap: 24px;
+  --button-padding: 11px 14px;
+  --button-border: 1px solid transparent;
+  --button-radius: 9px;
+  --button-outline: none;
+  --button-outline-offset: 0px;
+  --button-color: white;
+  --button-bg: var(--era-ink);
+  --button-shadow: none;
+  --button-text-shadow: none;
+  --button-justify: space-between;
+  --button-font: 800 11px / 1 var(--sans);
+  --button-decoration: none;
+  --button-arrow-opacity: 1;
+  --button-arrow-width: 1em;
+
+  /* Typography */
+  --heading-color: inherit;
+  --heading-family: var(--display);
+  --heading-size: clamp(26px, 3vw, 38px);
+  --heading-spacing: -0.04em;
+  --heading-decoration: none;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: clamp(16px, 2vw, 24px);
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  border-radius: 28px;
+  color: var(--ink);
+  /* background: color-mix(in srgb, var(--paper) 88%, transparent); */
+  backdrop-filter: blur(4px);
+  animation: reveal 0.8s 0.25s both cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.machineHeading {
+  display: flex;
+  padding: 0 3px 16px;
+}
+
+.machineHeading output {
+  margin-left: auto;
+  font-family: var(--display);
+  font-size: clamp(38px, 4vw, 56px);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}
+
+.eraStage {
+  position: relative;
+  height: 430px;
+  display: grid;
+  grid-template-rows: var(--chrome-height) minmax(0, 1fr);
+  overflow: hidden;
+  border: var(--stage-border);
+  border-radius: var(--stage-radius);
+  color: var(--era-ink);
+  background-color: var(--era-paper);
+  box-shadow: var(--stage-shadow);
+  transition:
+    grid-template-rows var(--era-duration) var(--era-ease),
+    border var(--era-duration) var(--era-ease),
+    border-radius var(--era-duration) var(--era-ease),
+    color var(--era-duration) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease),
+    box-shadow var(--era-duration) var(--era-ease);
+}
+
+.eraStage::before,
+.eraStage::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 65%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(15px);
+  pointer-events: none;
+  transition:
+    opacity var(--era-duration) var(--era-ease),
+    transform var(--era-duration) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease);
+}
+
+.eraStage::before {
+  top: -35%;
+  right: -20%;
+  background: #ffcfbd;
+  transform: translate(10%, -8%) scale(0.78);
+}
+
+.eraStage::after {
+  bottom: -52%;
+  left: -20%;
+  background: #d9e8cf;
+  transform: translate(-8%, 12%) scale(0.78);
+}
+
+.browserBar {
+  position: relative;
+  z-index: 2;
+  min-height: 0;
+  overflow: hidden;
+  border-bottom: var(--chrome-border);
+  color: var(--chrome-color);
+  opacity: var(--chrome-opacity);
+  background-color: var(--chrome-bg);
+  font:
+    11px Arial,
+    sans-serif;
+  transition:
+    opacity var(--era-duration-fast) var(--era-ease),
+    color var(--era-duration) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease),
+    border var(--era-duration) var(--era-ease);
+}
+
+.browserBar > * {
+  position: absolute;
+  transition:
+    opacity var(--era-duration-fast) var(--era-ease),
+    transform var(--era-duration) var(--era-ease),
+    color var(--era-duration) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease),
+    border var(--era-duration) var(--era-ease),
+    border-radius var(--era-duration) var(--era-ease);
+}
+
+.menuWords {
+  top: 50%;
+  left: 12px;
+  opacity: 0;
+  transform: translateY(-42%);
+}
+
+.address {
+  right: 8px;
+  bottom: 5px;
+  left: 8px;
+  padding: 3px 5px;
+  border: 1px solid transparent;
+  opacity: 0;
+  background: white;
+  transform: translateY(4px);
+}
+
+.windowTitle {
+  top: 50%;
+  left: 50%;
+  font-weight: 700;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+.stageContent {
+  position: relative;
+  z-index: 1;
+  min-height: 0;
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  opacity: 0;
+  background: repeating-linear-gradient(0deg, #000 0 1px, transparent 1px 4px);
+  pointer-events: none;
+  transition: opacity var(--era-duration) var(--era-ease);
+}
+
+.terminalCopy {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 94px 7%;
+  color: #88ffbd;
+  font:
+    14px / 1.7 "Courier New",
+    monospace;
+  opacity: var(--terminal-opacity);
+  text-shadow: 0 0 9px #71ffa1;
+  transform: translateY(-8px);
+  visibility: hidden;
+  transition:
+    opacity var(--era-duration-fast) var(--era-ease),
+    transform var(--era-duration) var(--era-ease),
+    visibility 0s linear var(--era-duration);
+}
+
+.terminalCopy .ready {
+  margin-top: 28px;
+}
+
+.terminalCopy i {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  vertical-align: -2px;
+  background: currentColor;
+  animation: blink 0.9s steps(1) infinite;
+}
+
+.appSurface {
+  position: absolute;
+  inset: var(--surface-inset);
+  z-index: 1;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows:
+    var(--nav-height)
+    minmax(0, 1fr)
+    var(--cards-height)
+    var(--status-height);
+  overflow: hidden;
+  border-width: var(--surface-border-width);
+  border-style: var(--surface-border-style);
+  border-color: var(--surface-border-color);
+  border-radius: var(--surface-radius);
+  color: var(--era-ink);
+  opacity: var(--app-opacity);
+  background-color: var(--surface-bg);
+  box-shadow:
+    var(--surface-shadow),
+    inset 0 1px rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  transform: scale(var(--surface-scale));
+  transform-origin: 50% 50%;
+  visibility: visible;
+  transition:
+    inset var(--era-duration) var(--era-ease),
+    grid-template-rows var(--era-duration) var(--era-ease),
+    border var(--era-duration) var(--era-ease),
+    border-radius var(--era-duration) var(--era-ease),
+    color var(--era-duration) var(--era-ease),
+    opacity var(--era-duration-fast) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease),
+    box-shadow var(--era-duration) var(--era-ease),
+    transform var(--era-duration) var(--era-ease),
+    visibility 0s linear;
+}
+
+.appNav {
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: var(--nav-justify);
+  gap: 9px;
+  overflow: hidden;
+  padding: var(--nav-padding);
+  border-bottom: var(--nav-border);
+  color: var(--nav-color);
+  background-color: var(--nav-bg);
+  font-size: 11px;
+  transition:
+    padding var(--era-duration) var(--era-ease),
+    color var(--era-duration) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease),
+    border var(--era-duration) var(--era-ease);
+}
+
+.brandMark {
+  width: var(--brand-width);
+  height: 25px;
+  flex: 0 0 var(--brand-width);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+  color: var(--brand-color);
+  opacity: var(--brand-opacity);
+  background: var(--brand-bg);
+  box-shadow: var(--brand-shadow);
+  font-family: var(--display);
+  font-weight: 800;
+  transform: translateX(-8px) scale(0.85);
+  transition:
+    width var(--era-duration) var(--era-ease),
+    flex-basis var(--era-duration) var(--era-ease),
+    border-radius var(--era-duration) var(--era-ease),
+    color var(--era-duration) var(--era-ease),
+    opacity var(--era-duration-fast) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease),
+    box-shadow var(--era-duration) var(--era-ease),
+    transform var(--era-duration) var(--era-ease);
+}
+
+.livePill {
+  width: var(--live-width);
+  max-width: var(--live-width);
+  margin-left: auto;
+  overflow: hidden;
+  opacity: var(--live-opacity);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+  transform: translateX(8px);
+  transition:
+    width var(--era-duration) var(--era-ease),
+    max-width var(--era-duration) var(--era-ease),
+    opacity var(--era-duration-fast) var(--era-ease),
+    transform var(--era-duration) var(--era-ease);
+}
+
+.livePill i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: #4ccb69;
+  box-shadow: 0 0 10px #4ccb69;
+}
+
+.appBody {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: var(--body-columns);
+  gap: 24px;
+  align-items: center;
+  overflow: hidden;
+  padding: var(--body-padding);
+  transition:
+    grid-template-columns var(--era-duration) var(--era-ease),
+    gap var(--era-duration) var(--era-ease),
+    padding var(--era-duration) var(--era-ease);
+}
+
+.clock {
+  position: relative;
+  width: var(--clock-size);
+  max-width: 100%;
+  aspect-ratio: 1;
+  border: var(--clock-border);
+  border-radius: var(--clock-radius);
+  outline: var(--clock-outline);
+  background-color: var(--clock-bg);
+  background-image: var(--clock-image);
+  box-shadow: var(--clock-shadow);
+  transform: var(--clock-transform);
+  transition:
+    width var(--era-duration) var(--era-ease),
+    border var(--era-duration) var(--era-ease),
+    border-radius var(--era-duration) var(--era-ease),
+    outline var(--era-duration) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease),
+    box-shadow var(--era-duration) var(--era-ease),
+    transform var(--era-duration) var(--era-ease);
+}
+
+.clock i {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  transform-origin: 50% 100%;
+  transition:
+    opacity var(--era-duration-fast) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease);
+}
+
+.hourHand {
+  height: 26%;
+  width: 2px;
+  border-radius: 4px;
+  background: var(--clock-detail-color);
+  transform: translate(-1px, -1px) rotate(var(--clock-hour-angle));
+  transition:
+    opacity var(--era-duration-fast) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease),
+    transform 220ms linear;
+}
+.minuteHand {
+  height: 37%;
+  width: 2px;
+  border-radius: 4px;
+  background: var(--clock-detail-color);
+  transform: translate(-1px, -1px) rotate(var(--clock-minute-angle));
+  transition:
+    opacity var(--era-duration-fast) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease),
+    transform 220ms linear;
+}
+
+.secondHand {
+  width: 0;
+  height: var(--second-hand-length);
+  color: var(--second-hand-color);
+  transform: translate(0, 0) rotate(var(--clock-second-angle));
+  transition:
+    color var(--era-duration) var(--era-ease),
+    transform 220ms linear;
+}
+
+.secondHand::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: var(--second-line-width);
+  height: 100%;
+  border-radius: 99px;
+  background: currentColor;
+  transform: translateX(-50%);
+  transition: width var(--era-duration) var(--era-ease);
+}
+
+.secondHand span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--second-dot-size);
+  height: var(--second-dot-size);
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: var(--second-dot-shadow);
+  transform: translate(-50%, -50%);
+  transition:
+    width var(--era-duration) var(--era-ease),
+    height var(--era-duration) var(--era-ease),
+    box-shadow var(--era-duration) var(--era-ease);
+}
+
+.clock .clockFace {
+  inset: var(--clock-face-inset);
+  border: var(--clock-face-border);
+  border-radius: var(--clock-face-radius);
+  background: var(--clock-face-bg);
+  opacity: var(--clock-detail-opacity);
+}
+
+.clock > span {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--clock-detail-color);
+  transform: translate(-50%, -50%);
+  opacity: var(--clock-detail-opacity);
+  transition:
+    opacity var(--era-duration-fast) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease);
+}
+
+.eraCopy {
+  min-width: 0;
+  transition: transform var(--era-duration) var(--era-ease);
+}
+
+.eraCopy h3 {
+  max-width: 300px;
+  margin: 10px 0 8px;
+  color: var(--heading-color);
+  font-family: var(--heading-family);
+  font-size: var(--heading-size);
+  line-height: 1;
+  letter-spacing: var(--heading-spacing);
+  text-decoration: var(--heading-decoration);
+  transition:
+    color var(--era-duration) var(--era-ease),
+    font-size var(--era-duration) var(--era-ease),
+    letter-spacing var(--era-duration) var(--era-ease);
+}
+
+.eraCopy p {
+  max-width: 290px;
+  margin: 0 0 20px;
+  color: color-mix(in srgb, var(--era-ink) 68%, transparent);
+  font-size: 12px;
+  line-height: 1.5;
+  transition: color var(--era-duration) var(--era-ease);
+}
+
+.eraCopy button {
+  width: var(--button-width);
+  display: inline-flex;
+  justify-content: var(--button-justify);
+  gap: var(--button-gap);
+  padding: var(--button-padding);
+  border: var(--button-border);
+  border-radius: var(--button-radius);
+  outline: var(--button-outline);
+  outline-offset: var(--button-outline-offset);
+  color: var(--button-color);
+  background-color: var(--button-bg);
+  cursor: default;
+  font: var(--button-font);
+  text-decoration: var(--button-decoration);
+  text-shadow: var(--button-text-shadow);
+  box-shadow: var(--button-shadow);
+  transition:
+    color var(--era-duration) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease),
+    border var(--era-duration) var(--era-ease),
+    border-radius var(--era-duration) var(--era-ease),
+    box-shadow var(--era-duration) var(--era-ease),
+    padding var(--era-duration) var(--era-ease),
+    width var(--era-duration) var(--era-ease),
+    transform var(--era-duration-input) var(--era-ease);
+}
+
+.eraCopy button span {
+  width: var(--button-arrow-width);
+  overflow: hidden;
+  opacity: var(--button-arrow-opacity);
+  transition:
+    width var(--era-duration) var(--era-ease),
+    opacity var(--era-duration-fast) var(--era-ease);
+}
+
+.futureCards {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  overflow: hidden;
+  padding: 0 16px 10px;
+  opacity: var(--cards-opacity);
+  transform: translateY(8px);
+  transition:
+    opacity var(--era-duration-fast) var(--era-ease),
+    padding var(--era-duration) var(--era-ease),
+    transform var(--era-duration) var(--era-ease);
+}
+
+.futureCards div {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 9px;
+  transition:
+    padding var(--era-duration) var(--era-ease),
+    border var(--era-duration) var(--era-ease),
+    border-radius var(--era-duration) var(--era-ease),
+    background-color var(--era-duration) var(--era-ease);
+}
+
+.futureCards span {
+  color: var(--era-accent);
+  font-size: 8px;
+}
+
+.statusBar {
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 0 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  color: color-mix(in srgb, var(--era-ink) 60%, transparent);
+  opacity: var(--status-opacity);
+  font-size: 9px;
+  transition:
+    opacity var(--era-duration-fast) var(--era-ease),
+    color var(--era-duration) var(--era-ease),
+    border var(--era-duration) var(--era-ease);
+}
+
+.timelineControl {
+  position: relative;
+  padding: 20px 4px 4px;
+}
+.rangeLabels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+.rangeLabels span {
+  color: var(--moss);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.timelineControl input {
+  width: 100%;
+  height: 4px;
+  display: block;
+  margin: 0;
+  border-radius: 99px;
+  outline: none;
+  background: linear-gradient(
+    90deg,
+    var(--orange) 0 var(--year-progress),
+    color-mix(in srgb, var(--ink) 14%, transparent) var(--year-progress) 100%
+  );
+  appearance: none;
+  cursor: ew-resize;
+}
+
+.timelineControl input::-webkit-slider-thumb {
+  width: 22px;
+  height: 22px;
+  border: 5px solid var(--paper);
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow:
+    0 0 0 1px var(--orange),
+    0 4px 14px rgba(0, 0, 0, 0.25);
+  appearance: none;
+}
+.timelineControl input::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border: 5px solid var(--paper);
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow:
+    0 0 0 1px var(--orange),
+    0 4px 14px rgba(0, 0, 0, 0.25);
+}
+.timelineControl input:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--orange) 36%, transparent);
+  outline-offset: 9px;
+}
+.eraTicks {
+  position: relative;
+  height: 7px;
+  margin: 8px 11px 0;
+}
+.eraTicks i {
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ink) 22%, transparent);
+  transform: translateX(-50%);
+  transition: background-color 380ms var(--era-ease);
+}
+.eraTicks .tickPassed {
+  background: var(--orange);
+}
+
+/* Each era changes variables and material treatment; the DOM stays intact. */
+.timeMachine[data-era="terminal"] {
+  --era-ink: #7dffb2;
+  --era-paper: #081b76;
+  --era-accent: #86ffc1;
+  --stage-border: 8px solid #1a1d20;
+  --stage-radius: 26px;
+  --stage-shadow: inset 0 0 70px rgba(0, 0, 0, 0.5), 0 12px 0 #0a0c0d;
+  --chrome-height: 0px;
+  --chrome-opacity: 0;
+  --app-opacity: 0;
+  --terminal-opacity: 1;
+  --surface-scale: 0.94;
+}
+
+.timeMachine[data-era="terminal"] .scanlines {
+  opacity: 0.16;
+}
+.timeMachine[data-era="terminal"] .terminalCopy {
+  visibility: visible;
+  transition-delay: 0s;
+}
+.timeMachine[data-era="terminal"] .appSurface {
+  visibility: hidden;
+  pointer-events: none;
+  transition-delay: 0s, 0s, 0s, 0s, 0s, 0s, 0s, 0s, 0s, var(--era-duration);
+}
+
+.timeMachine[data-era="mac"] {
+  --era-ink: #111;
+  --era-paper: #d8d8d8;
+  --era-accent: #111;
+  --stage-border: 2px solid #111;
+  --stage-radius: 2px;
+  --chrome-height: 25px;
+  --chrome-opacity: 1;
+  --chrome-bg: white;
+  --chrome-border: 2px solid #111;
+  --surface-inset: 27px 40px;
+  --surface-radius: 0px;
+  --surface-border-color: #111;
+  --surface-bg: white;
+  --surface-shadow: none;
+  --nav-height: 28px;
+  --status-height: 28px;
+  --status-opacity: 1;
+  --cards-height: 0px;
+  --cards-opacity: 0;
+  --brand-opacity: 0;
+  --brand-width: 0px;
+  --live-opacity: 0;
+  --live-width: 0px;
+  --nav-justify: center;
+  --nav-padding: 0;
+  --nav-border: 3px double #111;
+  --clock-size: 72px;
+  --clock-radius: 4px;
+  --clock-border: 2px solid #111;
+  --clock-face-bg: white;
+  --second-hand-color: #111;
+  --body-columns: 84px minmax(0, 1fr);
+  --button-padding: 6px;
+  --button-border: 2px solid #111;
+  --button-radius: 8px;
+  --button-outline: 1px solid #111;
+  --button-outline-offset: 1px;
+  --button-color: #111;
+  --button-bg: white;
+  --button-justify: center;
+  --button-gap: 0;
+  --button-arrow-opacity: 0;
+  --button-arrow-width: 0px;
+}
+
+.timeMachine[data-era="mac"] .eraStage {
+  background-image: radial-gradient(#777 0.7px, transparent 0.7px);
+  background-size: 3px 3px;
+}
+.timeMachine[data-era="mac"] .windowTitle {
+  opacity: 0;
+}
+.timeMachine[data-era="mac"] .menuWords {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+.timeMachine[data-era="win31"],
+.timeMachine[data-era="win95"] {
+  --era-ink: #111;
+  --era-paper: #c0c0c0;
+  --era-accent: #000080;
+  --stage-radius: 0px;
+  --chrome-height: 0;
+  --chrome-opacity: 0;
+  --surface-inset: 28px 34px;
+  --surface-radius: 0px;
+  --surface-border-width: 3px;
+  --surface-border-color: #008;
+  --surface-bg: white;
+  --surface-shadow: none;
+  --nav-height: 28px;
+  --status-height: 28px;
+  --status-opacity: 1;
+  --cards-height: 0px;
+  --cards-opacity: 0;
+  --brand-opacity: 0;
+  --brand-width: 0px;
+  --live-opacity: 0;
+  --live-width: 0px;
+  --nav-padding: 0;
+  --nav-color: white;
+  --nav-bg: #000080;
+  --clock-size: 72px;
+  --clock-radius: 0px;
+  --clock-border: 3px inset white;
+  --clock-outline: 1px solid var(--era-ink);
+  --clock-bg: white;
+  --second-hand-color: #111;
+  --body-columns: 84px minmax(0, 1fr);
+  --button-gap: 0;
+  --button-padding: 6px 8px;
+  --button-border: 3px outset white;
+  --button-radius: 2px;
+  --button-outline: 1px solid black;
+  --button-color: #111;
+  --button-bg: #c0c0c0;
+  --button-justify: center;
+  --button-font: 700 14px / 1 Arial, sans-serif;
+  --button-arrow-opacity: 0;
+  --button-arrow-width: 0px;
+  --heading-family: Arial, sans-serif;
+  --heading-size: 23px;
+  --heading-spacing: 0;
+}
+.timeMachine[data-era="win95"] {
+  --era-paper: #018281;
+  --era-accent: #008080;
+  --surface-bg: #c0c0c0;
+  --surface-border-style: outset;
+  --surface-border-color: white;
+}
+
+.timeMachine[data-era="web"] {
+  --era-ink: #000;
+  --era-paper: white;
+  --era-accent: #0000ee;
+  --stage-radius: 2px;
+  --chrome-height: 58px;
+  --chrome-opacity: 1;
+  --chrome-bg: #d6d6d6;
+  --chrome-border: 2px outset #eee;
+  --surface-inset: 0px;
+  --surface-radius: 0px;
+  --surface-border-color: transparent;
+  --surface-bg: white;
+  --surface-shadow: none;
+  --nav-height: 44px;
+  --status-height: 0px;
+  --status-opacity: 0;
+  --cards-height: 0px;
+  --cards-opacity: 0;
+  --brand-opacity: 1;
+  --brand-width: 25px;
+  --live-opacity: 0;
+  --live-width: 0px;
+  --nav-justify: center;
+  --nav-border: 1px dotted #888;
+  --clock-size: 72px;
+  --clock-border: 3px solid #1a50ee;
+  --body-columns: 84px minmax(0, 1fr);
+  --button-width: auto;
+  --button-gap: 4px;
+  --button-padding: 0;
+  --button-border: 0;
+  --button-color: #0000ee;
+  --button-bg: transparent;
+  --button-decoration: underline;
+  --heading-color: #0000a8;
+  --heading-family: Georgia, serif;
+  --heading-size: 26px;
+  --heading-spacing: 0;
+  --heading-decoration: underline;
+}
+.timeMachine[data-era="web"] .windowTitle {
+  opacity: 0;
+}
+.timeMachine[data-era="web"] .menuWords {
+  top: 4px;
+  opacity: 1;
+  transform: none;
+}
+.timeMachine[data-era="web"] .address {
+  opacity: 1;
+  border: 2px inset #eee;
+  transform: none;
+}
+.timeMachine[data-era="web"] .brandMark {
+  border-radius: 50%;
+  background: #2cbe42;
+}
+.timeMachine[data-era="web"] .appBody {
+  max-width: 430px;
+  margin: auto;
+}
+
+.timeMachine[data-era="xp"] {
+  --era-ink: #103275;
+  --era-paper: #d6ebff;
+  --era-accent: #1672e8;
+  --stage-border: 3px solid #0a61d8;
+  --stage-radius: 9px;
+  --stage-shadow: inset 0 0 35px white;
+  --chrome-height: 34px;
+  --chrome-opacity: 1;
+  --chrome-color: white;
+  --chrome-bg: #126fd7;
+  --surface-inset: 25px 34px;
+  --surface-radius: 10px;
+  --surface-border-color: #7cb8f0;
+  --surface-bg: #f7f5eb;
+  --surface-shadow: 0 15px 30px rgba(31, 101, 185, 0.33);
+  --nav-height: 44px;
+  --status-height: 28px;
+  --status-opacity: 1;
+  --cards-height: 0px;
+  --cards-opacity: 0;
+  --brand-opacity: 1;
+  --brand-width: 25px;
+  --live-opacity: 0;
+  --live-width: 0px;
+  --clock-size: 78px;
+  --clock-bg: #62aeff;
+  --clock-image: radial-gradient(
+    circle at 50% 80%,
+    rgba(255, 255, 255, 0.75),
+    transparent 50%
+  );
+  --clock-shadow:
+    0 0 0 4px rgba(255, 255, 255, 0.6), 0 7px 14px rgba(40, 95, 168, 0.4);
+  --clock-face-inset: 0 10px 50%;
+  --clock-face-border: 0;
+  --clock-face-radius: 1000px 1000px / 700px 700px;
+  --clock-face-bg: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8),
+    transparent 75%
+  );
+  --body-columns: 90px minmax(0, 1fr);
+  --button-gap: 0;
+  --button-padding: 6px;
+  --button-border: 2px outset #a6c7ec;
+  --button-radius: 2px;
+  --button-outline: 1px solid #126fd7;
+  --button-color: var(--era-ink);
+  --button-bg: #f1f4f5;
+  --button-justify: center;
+  --button-font: 400 12px / 1 Arial, sans-serif;
+  --button-arrow-opacity: 0;
+  --button-arrow-width: 0px;
+}
+
+.timeMachine[data-era="glossy"] {
+  --era-ink: #263038;
+  --era-paper: #e8edf0;
+  --era-accent: #2686df;
+  --chrome-height: 34px;
+  --chrome-opacity: 1;
+  --chrome-color: white;
+  --chrome-bg: #29343c;
+  --surface-inset: 25px 34px;
+  --surface-radius: 11px;
+  --surface-border-color: #b9c0c5;
+  --surface-bg: #f7f7f7;
+  --surface-shadow: 0 15px 40px rgba(54, 67, 76, 0.2);
+  --nav-height: 46px;
+  --status-height: 28px;
+  --status-opacity: 1;
+  --cards-height: 0px;
+  --cards-opacity: 0;
+  --brand-opacity: 1;
+  --brand-width: 25px;
+  --brand-bg: #247fd5;
+  --brand-shadow: inset 0 1px white, 0 2px 5px rgba(22, 93, 168, 0.33);
+  --live-opacity: 0;
+  --live-width: 0px;
+  --clock-size: 78px;
+  --body-columns: 90px minmax(0, 1fr);
+  --button-border: 1px solid #0f5ba9;
+  --button-radius: 18px;
+  --button-bg: #247fd5;
+  --button-shadow: inset 0 1px white, 0 2px 5px rgba(22, 93, 168, 0.33);
+  --button-text-shadow: 0 -1px #004080;
+}
+
+.timeMachine[data-era="flat"] {
+  --era-ink: white;
+  --era-paper: #08aeb0;
+  --era-accent: white;
+  --chrome-height: 0px;
+  --chrome-opacity: 0;
+  --surface-inset: 0px;
+  --surface-radius: 0px;
+  --surface-border-color: transparent;
+  --surface-bg: #08aeb0;
+  --surface-shadow: none;
+  --nav-height: 58px;
+  --status-height: 0px;
+  --status-opacity: 0;
+  --cards-height: 0px;
+  --cards-opacity: 0;
+  --brand-opacity: 1;
+  --brand-width: 25px;
+  --brand-color: #08aeb0;
+  --brand-bg: white;
+  --live-opacity: 0;
+  --live-width: 0px;
+  --nav-border: 1px solid rgba(255, 255, 255, 0.2);
+  --clock-size: 78px;
+  --clock-border: 3px solid white;
+  --second-hand-color: white;
+  --clock-bg: transparent;
+  --body-columns: 90px minmax(0, 1fr);
+  --button-radius: 2px;
+  --button-color: white;
+  --button-bg: #057e87;
+}
+
+.timeMachine[data-era="minimal"] {
+  --era-ink: #172124;
+  --era-paper: #f7f8f8;
+  --era-accent: #20a49f;
+  --chrome-height: 0px;
+  --chrome-opacity: 0;
+  --surface-inset: 0px;
+  --surface-radius: 0px;
+  --surface-border-color: transparent;
+  --surface-bg: #f7f8f8;
+  --surface-shadow: none;
+  --nav-height: 62px;
+  --status-height: 0px;
+  --status-opacity: 0;
+  --cards-height: 0px;
+  --cards-opacity: 0;
+  --brand-opacity: 1;
+  --brand-width: 25px;
+  --brand-color: #20a49f;
+  --brand-bg: #d8f2ef;
+  --live-opacity: 0;
+  --live-width: 0px;
+  --nav-padding: 0 26px;
+  --clock-size: 78px;
+  --clock-border: 2px solid var(--era-accent);
+  --clock-bg: white;
+  --clock-shadow: 0 8px 25px rgba(23, 53, 50, 0.1);
+  --second-hand-color: white;
+  --second-hand-length: 46%;
+  --second-line-width: 0px;
+  --second-dot-size: 2px;
+  --second-dot-shadow:
+    0 0 0 2px var(--era-accent), 0 2px 8px rgba(23, 53, 50, 0.28);
+  --body-columns: 90px minmax(0, 1fr);
+  --body-padding: 30px 42px;
+  --button-radius: 99px;
+  --button-bg: #20a49f;
+}
+
+.timeMachine[data-era="spatial"] {
+  --clock-border: 0;
+  --clock-bg: #ef6548;
+  --clock-shadow:
+    0 0 0 16px #f5a38e, 0 0 0 32px #f8cdc0, 0 18px 45px rgba(215, 69, 36, 0.17);
+  --clock-transform: scale(0.58);
+  --clock-detail-opacity: 0;
+  --clock-detail-color: white;
+  --second-hand-color: white;
+  --second-line-width: 0px;
+  --second-dot-size: 8px;
+  --second-dot-shadow: 0 2px 8px rgba(113, 58, 37, 0.3);
+  --heading-size: clamp(28px, 3.2vw, 42px);
+  --button-width: 100%;
+  --button-radius: 8px;
+  --button-bg: #19231e;
+}
+
+.timeMachine[data-era="spatial"] .eraStage::before,
+.timeMachine[data-era="spatial"] .eraStage::after {
+  opacity: 0.72;
+  transform: none;
+}
+.timeMachine[data-era="spatial"] .livePill,
+.timeMachine[data-era="spatial"] .futureCards,
+.timeMachine[data-era="web"] .brandMark,
+.timeMachine[data-era="xp"] .brandMark,
+.timeMachine[data-era="glossy"] .brandMark,
+.timeMachine[data-era="flat"] .brandMark,
+.timeMachine[data-era="minimal"] .brandMark {
+  transform: none;
+}
+.timeMachine[data-era="spatial"] .hourHand {
+  height: 6px;
+  width: 6px;
+  transform: translate(-3px, -3px) rotate(var(--clock-hour-angle))
+    translateY(-30px);
+}
+.timeMachine[data-era="spatial"] .minuteHand {
+  height: 6px;
+  width: 6px;
+  transform: translate(-3px, -3px) rotate(var(--clock-minute-angle))
+    translateY(-30px);
+}
+.timeMachine[data-era="spatial"] .secondHand {
+  transition: 0.2s linear;
+}
+.timeMachine:not([data-era="terminal"]) .terminalCopy {
+  transform: translateY(-8px);
+}
+.timeMachine[data-era="terminal"] .terminalCopy {
+  transform: none;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1060px) {
+  .timeMachine {
+    width: min(100%, 700px);
+    margin: 10px auto 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .timeMachine {
+    --surface-inset: 12px;
+    padding: 12px;
+    border-radius: 20px;
+  }
+  .appBody {
+    grid-template-columns: 66px minmax(0, 1fr);
+    gap: 14px;
+    padding: 20px 16px;
+  }
+  .clock {
+    width: min(var(--clock-size), 62px);
+  }
+  .futureCards {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+}

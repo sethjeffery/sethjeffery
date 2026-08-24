@@ -1,0 +1,17 @@
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 28px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.eyebrow i {
+  width: 30px;
+  height: 2px;
+  background: var(--orange);
+}

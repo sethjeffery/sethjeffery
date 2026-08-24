@@ -1,0 +1,116 @@
+.workHero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(510px, 1.14fr);
+  gap: clamp(44px, 6vw, 100px);
+  align-items: center;
+  padding: clamp(80px, 10vw, 150px) clamp(24px, 5.5vw, 96px);
+  background: var(--paper);
+}
+
+.workHero::after {
+  content: "";
+  position: absolute;
+  right: -10%;
+  top: -30%;
+  width: 45vw;
+  aspect-ratio: 1;
+  background: repeating-radial-gradient(
+    circle at center,
+    transparent 0 50px,
+    var(--orange) 50px 51px
+  );
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.workTitle {
+  animation: reveal 0.8s 0.1s both cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.principles {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: clamp(60px, 9vw, 150px);
+  padding: clamp(90px, 12vw, 180px) clamp(24px, 7vw, 120px);
+}
+
+.principleGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.principleGrid > :nth-child(even) {
+  border-right-width: 1px;
+}
+
+.principleGrid > :nth-last-child(-n + 2) {
+  border-bottom-width: 1px;
+}
+
+.play {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(60px, 9vw, 150px);
+  align-items: center;
+  padding: clamp(90px, 12vw, 180px) clamp(24px, 7vw, 120px);
+  color: var(--paper);
+  background: var(--moss);
+}
+
+.play > p {
+  max-width: 470px;
+  margin: 2.5em 0 0;
+  font-size: clamp(18px, 1.75vw, 24px);
+  line-height: 1.65;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 1060px) {
+  .workHero {
+    grid-template-columns: 1fr;
+  }
+
+  .principles {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .workHero h1 {
+    font-size: 16vw;
+  }
+
+  .workHero {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .principleGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .principleGrid > *,
+  .principleGrid > :nth-child(even),
+  .principleGrid > :nth-last-child(-n + 2) {
+    border-width: 1px 1px 0;
+  }
+
+  .principleGrid > :last-child {
+    border-bottom-width: 1px;
+  }
+
+  .play {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

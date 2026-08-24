@@ -1,0 +1,10 @@
+.page {
+  scroll-margin-top: 84px;
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .page {
+    scroll-margin-top: 68px;
+  }
+}

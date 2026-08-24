@@ -1,0 +1,200 @@
+.storyHero {
+  display: flex;
+  align-items: center;
+  padding: clamp(60px, 9vw, 140px) clamp(24px, 7vw, 120px);
+  color: white;
+}
+
+.storyHero > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+}
+
+.wash {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      var(--forest),
+      color-mix(var(--forest) 50%, transparent),
+      color-mix(var(--forest) 10%, transparent)
+    ),
+    linear-gradient(to bottom, #091810, transparent 50%);
+}
+
+[data-mood="dusk"] .wash,
+[data-mood="deep"] .wash {
+  background:
+    linear-gradient(
+      90deg,
+      var(--paper),
+      color-mix(var(--paper) 50%, transparent),
+      color-mix(var(--paper) 10%, transparent)
+    ),
+    linear-gradient(to bottom, #091810, transparent 50%);
+}
+
+.storyTitle {
+  animation: reveal 0.8s 0.1s both cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.storyTitle > p:not(:first-child) {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.storyIntro {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: clamp(60px, 10vw, 180px);
+  padding: clamp(90px, 12vw, 180px) clamp(24px, 7vw, 120px);
+  place-items: center;
+}
+
+.storyLead {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(36px, 4vw, 64px);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.storyIntro > div {
+  color: var(--moss);
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.storyIntro > div p + p {
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+.journal {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: clamp(18px, 3vw, 48px);
+  padding: 0 clamp(24px, 7vw, 120px) clamp(90px, 12vw, 180px);
+}
+
+.journal img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.journal > div img {
+  height: min(75vh, 850px);
+  object-position: center 76%;
+}
+
+.journal small {
+  display: block;
+  margin-top: 12px;
+  color: var(--moss);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.journal aside {
+  align-self: end;
+}
+
+.journal aside img {
+  aspect-ratio: 4 / 3;
+}
+
+.journal aside p {
+  margin: 20px 0 0;
+  color: var(--moss);
+  line-height: 1.55;
+}
+
+.journal aside b {
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 23px;
+}
+
+.faith {
+  position: relative;
+  padding: clamp(90px, 12vw, 180px) clamp(24px, 7vw, 120px);
+  color: var(--cream);
+  background-color: var(--forest);
+  background-image: radial-gradient(
+    circle at bottom,
+    rgb(227, 195, 10) 0%,
+    rgb(227, 162, 10) 5%,
+    #f6b206a4 5%,
+    #f6920680 15%,
+    #f6920621 35%,
+    transparent 50%
+  );
+}
+
+.faith h2 {
+  max-width: 1120px;
+  margin: 0;
+  font-size: clamp(48px, 6.5vw, 100px);
+  line-height: 0.98;
+}
+
+.faith > p:last-child {
+  max-width: 620px;
+  margin: 40px 0 0 auto;
+  opacity: 0.9;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.7;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 920px) {
+  .storyIntro {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .storyHero {
+    padding-bottom: 80px;
+  }
+
+  .storyHero > img {
+    object-position: 62% center;
+  }
+
+  .journal {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .journal > div img {
+    height: 65vh;
+  }
+
+  .journal small,
+  .journal aside p {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+
+  .journal aside {
+    width: 78%;
+    margin-left: auto;
+  }
+}

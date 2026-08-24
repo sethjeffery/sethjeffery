@@ -1,0 +1,41 @@
+.hero {
+  position: relative;
+  min-height: calc(100svh - 84px);
+  overflow: hidden;
+}
+
+.title {
+  position: relative;
+  z-index: 3;
+}
+
+.title h1 {
+  margin: 0;
+  font-size: clamp(66px, 9vw, 144px);
+  line-height: 0.83;
+}
+
+.title > p:not(:first-child) {
+  max-width: 610px;
+  margin: 32px 0 0;
+  font-size: clamp(19px, 1.76vw, 22px);
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.overPage {
+  color: var(--over-page, #111622);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-family: var(--display);
+  font-size: 18vw;
+  line-height: 9vw;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: calc(100svh - 68px);
+  }
+}

@@ -1,0 +1,109 @@
+.header {
+  position: fixed;
+  z-index: 50;
+  inset: 0 0 auto;
+  height: 84px;
+  padding: 0 clamp(24px, 7vw, 120px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--ink);
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
+  transition:
+    color 0.35s ease,
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    -webkit-backdrop-filter 0.35s ease,
+    backdrop-filter 0.35s ease;
+}
+
+.scrolled {
+  background-color: color-mix(in srgb, var(--cream) 82%, transparent);
+  border-bottom-color: var(--line);
+  box-shadow: 0 8px 32px rgba(18, 29, 22, 0.06);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  backdrop-filter: blur(18px) saturate(1.2);
+}
+
+[data-mood="dawn"] .scrolled {
+  background-color: color-mix(in srgb, #e9d1bd 84%, transparent);
+}
+
+[data-mood="day"] .scrolled {
+  background-color: color-mix(in srgb, #e5eef0 84%, transparent);
+}
+
+[data-mood="dusk"] .scrolled {
+  background-color: color-mix(in srgb, #2c2541 84%, transparent);
+  box-shadow: 0 8px 34px rgba(10, 7, 24, 0.18);
+}
+
+[data-mood="deep"] .scrolled {
+  background-color: color-mix(in srgb, #07131f 86%, transparent);
+  box-shadow: 0 8px 34px rgba(0, 0, 8, 0.22);
+}
+
+[data-mood="dusk"] .header:not(.scrolled),
+[data-mood="deep"] .header:not(.scrolled) {
+  text-shadow: 0 1px 14px rgba(2, 3, 12, 0.24);
+}
+
+.navigation {
+  display: flex;
+  gap: clamp(18px, 3vw, 42px);
+}
+
+.header > button {
+  justify-self: end;
+}
+
+.navigation a {
+  position: relative;
+  padding: 30px 0 27px;
+  color: var(--moss);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.navigation a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 20px;
+  height: 2px;
+  background: var(--orange);
+  transition: right 0.25s;
+}
+
+.navigation a:hover::after,
+.navigation a.active::after {
+  right: 0;
+}
+
+.navigation a.active {
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .header {
+    height: 68px;
+  }
+
+  .navigation {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .navigation a {
+    padding: 25px 0 22px;
+  }
+
+  .navigation a::after {
+    bottom: 15px;
+  }
+}

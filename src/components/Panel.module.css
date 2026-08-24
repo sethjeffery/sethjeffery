@@ -1,0 +1,16 @@
+.panel {
+  transition:
+    background-color 0.5s,
+    color 0.5s;
+}
+
+.overPage {
+  color: var(--over-page, #111622);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-family: var(--display);
+  font-size: 18vw;
+  line-height: 9vw;
+  z-index: 1;
+}
