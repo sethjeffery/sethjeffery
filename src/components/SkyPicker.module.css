@@ -72,6 +72,7 @@
   top: -3px;
   border-radius: 50%;
   background: color-mix(in srgb, var(--paper) 72%, var(--orange));
+  transition: background-color 0.5s;
 }
 
 .picker:not([data-mood="deep"]) .moon {
@@ -86,6 +87,7 @@
   bottom: 0;
   height: 2px;
   background: var(--orange);
+  transition: background-color 0.5s;
 }
 
 .label {

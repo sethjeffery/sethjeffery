@@ -72,7 +72,7 @@ export function Heart(): React.ReactElement {
         <div>
           <div className={styles.movementList}>
             <Movement to="#mind" no="01" title="building software." icon="" />
-            <Movement to="#soul" no="02" title="writing music." icon="" />
+            <Movement to="#soul" no="02" title="producing music." icon="" />
             <Movement to="#strength" no="03" title="raising family." />
           </div>
         </div>

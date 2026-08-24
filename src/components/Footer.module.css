@@ -33,7 +33,12 @@
 
 .footer > small {
   color: var(--orange);
+  transition: color 0.5s;
   font-weight: 800;
+}
+
+.links a {
+  transition: color 0.5s;
 }
 
 @media (max-width: 920px) {

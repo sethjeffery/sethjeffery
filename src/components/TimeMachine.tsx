@@ -1,5 +1,5 @@
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CssVariables } from "../types";
 import styles from "./TimeMachine.module.css";
 
@@ -21,6 +21,8 @@ type Era = (typeof ERAS)[number];
 const FIRST_YEAR = ERAS[0].year;
 const LAST_YEAR = ERAS[ERAS.length - 1].year;
 const YEAR_SPAN = LAST_YEAR - FIRST_YEAR;
+const AUTO_START_DELAY_MS = 2000;
+const AUTO_ADVANCE_INTERVAL_MS = 2000;
 
 function positionForYear(year: number): string {
   return `${((year - FIRST_YEAR) / YEAR_SPAN) * 100}%`;
@@ -55,8 +57,11 @@ function createClockOrigin(): ClockOrigin {
 
 export function TimeMachine(): React.ReactElement {
   const [year, setYear] = useState<number>(FIRST_YEAR);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const [clockOrigin] = useState(createClockOrigin);
   const [now, setNow] = useState(clockOrigin.startedAt);
+  const machineRef = useRef<HTMLDivElement>(null);
   const era = eraAt(year);
   const elapsedSeconds = (now - clockOrigin.startedAt) / 1000;
   const machineStyle: CssVariables = {
@@ -71,8 +76,57 @@ export function TimeMachine(): React.ReactElement {
     return () => window.clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    const machine = machineRef.current;
+    if (!machine || !("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.35 },
+    );
+    observer.observe(machine);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const machine = machineRef.current;
+    if (!machine) return;
+
+    const stopAutoAnimation = () => setHasInteracted(true);
+    machine.addEventListener("click", stopAutoAnimation);
+
+    return () => machine.removeEventListener("click", stopAutoAnimation);
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible || hasInteracted) return;
+
+    const advanceEra = () => {
+      setYear((currentYear) => {
+        const currentEraIndex = ERAS.indexOf(eraAt(currentYear));
+        return ERAS[(currentEraIndex + 1) % ERAS.length].year;
+      });
+    };
+    let interval: number | undefined;
+    const delay = window.setTimeout(() => {
+      advanceEra();
+      interval = window.setInterval(advanceEra, AUTO_ADVANCE_INTERVAL_MS);
+    }, AUTO_START_DELAY_MS);
+
+    return () => {
+      window.clearTimeout(delay);
+      if (interval !== undefined) window.clearInterval(interval);
+    };
+  }, [hasInteracted, isVisible]);
+
   return (
-    <div className={styles.timeMachine} data-era={era.key} style={machineStyle}>
+    <div
+      className={styles.timeMachine}
+      data-era={era.key}
+      ref={machineRef}
+      style={machineStyle}
+    >
       <div className={styles.machineHeading}>
         <output htmlFor="design-year">{year}</output>
       </div>
@@ -117,7 +171,9 @@ export function TimeMachine(): React.ReactElement {
               </div>
               <div className={styles.eraCopy}>
                 <h3>Elegance is constant.</h3>
-                <p>It is the way we express it that shifts with the seasons.</p>
+                <p>
+                  It is the way that I express it that shifts with the seasons.
+                </p>
                 <button type="button">
                   Go <span>→</span>
                 </button>
@@ -149,7 +205,7 @@ export function TimeMachine(): React.ReactElement {
       <div className={styles.timelineControl}>
         <div className={styles.rangeLabels} aria-hidden="true">
           <b>{FIRST_YEAR}</b>
-          <span>Experience through time</span>
+          <span>Drag the slider through time</span>
           <b>{LAST_YEAR}</b>
         </div>
         <input

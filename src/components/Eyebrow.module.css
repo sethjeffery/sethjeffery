@@ -14,4 +14,5 @@
   width: 30px;
   height: 2px;
   background: var(--orange);
+  transition: background-color 0.5s;
 }

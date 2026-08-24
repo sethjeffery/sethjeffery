@@ -71,6 +71,7 @@
   color: #19131d;
   background: var(--orange);
   font-style: normal;
+  transition: background-color 0.5s;
 }
 
 .listen {
@@ -81,6 +82,9 @@
   padding: clamp(90px, 12vw, 180px) clamp(24px, 7vw, 120px);
   color: var(--ink);
   background: var(--cream);
+  transition:
+    background-color 0.5s,
+    color 0.5s;
 }
 
 .platforms {
@@ -111,6 +115,9 @@
   padding: clamp(90px, 12vw, 180px) clamp(24px, 7vw, 120px);
   color: var(--cream);
   background: var(--moss);
+  transition:
+    background-color 0.5s,
+    color 0.5s;
 }
 
 .videoGrid {
@@ -127,6 +134,7 @@
   padding: clamp(90px, 12vw, 180px) clamp(24px, 7vw, 120px)
     clamp(120px, 18vw, 240px);
   background: var(--sky);
+  transition: background-color 0.5s;
 }
 
 .studio > img {

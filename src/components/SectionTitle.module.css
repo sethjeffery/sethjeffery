@@ -10,4 +10,5 @@
   color: var(--moss);
   line-height: 1.65;
   font-size: 18px;
+  transition: color 0.5s;
 }

@@ -42,6 +42,7 @@
   font-size: 29px;
   font-weight: 600;
   line-height: 1;
+  transition: color 0.5s;
 }
 
 .toolbar p {
@@ -60,6 +61,7 @@
   background: #8eaa98;
   margin-right: 8px;
   box-shadow: 0 0 0 4px rgba(142, 170, 152, 0.12);
+  transition: background-color 0.5s;
 }
 
 .toolbar p i[data-status="won"] {
@@ -80,6 +82,9 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .toolbar > button:hover,

@@ -4,7 +4,8 @@
   gap: clamp(44px, 6vw, 100px);
   align-items: center;
   padding: clamp(80px, 10vw, 150px) clamp(24px, 5.5vw, 96px);
-  background: var(--paper);
+  background-color: var(--paper);
+  transition: background-color 0.5s;
 }
 
 .workHero::after {
@@ -15,7 +16,7 @@
   width: 45vw;
   aspect-ratio: 1;
   background: repeating-radial-gradient(
-    circle at center,
+    circle at center in oklab,
     transparent 0 50px,
     var(--orange) 50px 51px
   );
@@ -55,6 +56,9 @@
   padding: clamp(90px, 12vw, 180px) clamp(24px, 7vw, 120px);
   color: var(--paper);
   background: var(--moss);
+  transition:
+    background-color 0.5s,
+    color 0.5s;
 }
 
 .play > p {

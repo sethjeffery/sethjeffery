@@ -76,11 +76,13 @@ export function Strength(): React.ReactElement {
 
       <Panel className={styles.faith}>
         <Eyebrow>To be continued</Eyebrow>
-        <h2>A new adventure waits behind the turn of every next year.</h2>
+        <h2>
+          A new adventure waits behind the joyful yes to God’s instruction.
+        </h2>
         <p>
           We have moved countries, grown a family, led 24-hour non-stop worship
-          events, seen dreams come to life. God will reveal the mystery of what
-          happens next.
+          events, seen dreams come to life. God will reveal the mystery of
+          whatever happens next.
         </p>
       </Panel>
     </Page>
