@@ -16,6 +16,7 @@ export function Strength(): React.ReactElement {
         <img
           src="/photos/seth-and-ana-2026.jpg"
           alt="Seth and Ana together in the woods"
+          loading="lazy"
         />
         <div className={styles.wash} />
         <RouteTitle className={styles.storyTitle}>
@@ -55,6 +56,7 @@ export function Strength(): React.ReactElement {
           <img
             src="/photos/family-2026-3.jpg"
             alt="The Jeffery family walking together in the woods"
+            loading="lazy"
           />
           <small>Marple · Stockport</small>
         </div>
@@ -62,6 +64,7 @@ export function Strength(): React.ReactElement {
           <img
             src="/photos/portugal-friends-2019.jpg"
             alt="Friends gathered at a worship event in Portugal"
+            loading="lazy"
           />
           <p>
             <b>Across Europe</b>

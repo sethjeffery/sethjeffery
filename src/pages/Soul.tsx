@@ -73,6 +73,7 @@ export function Soul(): React.ReactElement {
         <img
           src="/photos/seth-and-ana-2020.jpg"
           alt="Instruments, microphones and lights ready for a live session"
+          loading="lazy"
         />
         <div>
           <Eyebrow>The Heavens the audience</Eyebrow>

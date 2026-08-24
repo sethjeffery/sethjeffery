@@ -45,6 +45,9 @@ export function Heart(): React.ReactElement {
             <img
               src="/photos/family-2026.jpg"
               alt="Seth, Ana and their four children in the woods"
+              fetchPriority="high"
+              width="1467"
+              height="2200"
             />
           </div>
           <i className={`${styles.orbit} ${styles.orbitOne}`} />
@@ -79,6 +82,7 @@ export function Heart(): React.ReactElement {
         <img
           src="/photos/familiy-2026-2.jpg"
           alt="The Jeffery family sharing music together in a forest"
+          loading="lazy"
         />
         <blockquote>
           <span>“</span>As for me and my house,
