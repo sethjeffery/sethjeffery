@@ -35,6 +35,9 @@ export function Heart(): React.ReactElement {
             build them.
           </p>
           <Actions>
+            <ActionLink to="/cv.pdf" variant="text">
+              Looking for a Resume/CV ?
+            </ActionLink>
             <ActionLink to="mailto:seth@sethjeffery.com" variant="text">
               Write to me. Email is still a thing.
             </ActionLink>
